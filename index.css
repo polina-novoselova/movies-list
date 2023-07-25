@@ -81,56 +81,71 @@ body {
 }
 
 .movie-items {
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 20px;
+
 }
 
 .movie-item {
   display: flex;
   margin-top: 2px;
   padding: 0 20px;
-  justify-content: space-between;
   height: 70px;
   border-radius: 10px;
   background: #3a3939;
 }
 
-.checkbox {
-  position: absolute;
-  /* display: none; 
-  z-index: -1; */
-  opacity: 1;
-}
-
 .label {
-  margin: auto 0;
-  margin-left: 40px;
-  height: 20px;
-  content: center;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-grow: 3;
+  height: 100%;
 }
 
-.checkbox + label {
+.checkbox {
+  display: none;
+}
+
+.fakechecbox {
   position: relative;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-
-.checkbox + label:before {
-  margin-left: 10px;
-  content: "";
-  position: absolute;
-  left: -48px;
-  width: 18px;
-  height: 18px;
+  min-height: 18px;
+  min-width: 18px;
   border: 1px solid #f3f6f9;
   border-radius: 50%;
 }
 
-.checkbox.hovered + label::before {
-  background:rgba(101, 50, 248, 0.5) ;
+.fakechecbox::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #f3f6f9;
+  border-radius: 50%;
+  background: #6532f8;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 
-.checkbox:checked + label:before {
-  background: #6532f8;
+.fakechecbox:checked::before, 
+.checkbox:checked + .fakechecbox::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.checkbox:checked ~ .movie-name {
+  text-decoration: line-through;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.movie-item:has(.label>.checkbox:checked) {
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
 }
 
 .movie-name {
@@ -139,22 +154,16 @@ body {
 }
 
 .btn-delete-item {
-    margin: auto 0;
-    width: 24px;
-    height: 24px;
-    background-image: url(./resources/btn-cross.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    opacity: 0.3;
+  margin: auto 0;
+  width: 24px;
+  height: 24px;
+  background-image: url(./resources/btn-cross.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.3;
 }
 
 .btn-delete-item:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
-
-.checked {
-    text-decoration: line-through;
-    opacity: 0.5;
-}
-
