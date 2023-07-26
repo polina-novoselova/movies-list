@@ -6,7 +6,7 @@ const moviesListNode = document.getElementById("movie-items");
 
 let moviesList = [];
 
-// init();
+init();
 
 function addMovie() {
   const filmName = getMovieNameFromUser();
@@ -58,6 +58,10 @@ function renderMovies() {
     movieCheckbox.setAttribute("checked", "false");
     movieCheckbox.checked = movie.checked;
 
+    const fakecheckbox = document.createElement("span");
+    fakecheckbox.className = "fakecheckbox";
+    fakecheckbox.checked = movie.checked;
+
     const movieLabel = document.createElement("label");
     movieLabel.className = "label";
 
@@ -72,6 +76,7 @@ function renderMovies() {
 
     movieLabel.appendChild(movieCheckbox);
     movieItem.appendChild(movieLabel);
+    movieLabel.appendChild(fakecheckbox); 
     movieLabel.appendChild(movieName);
     movieItem.appendChild(deleteMovieBtn);
 
@@ -84,71 +89,30 @@ function init() {
   renderMovies();
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const checkboxes = document.querySelectorAll(".checkbox input");
+// удалить фильм 
+function deleteMovie(event) {
+  if (event.target.dataset.action === "delete") {
+    // родительский элемент
+    const parentNode = event.target.closest(".movie-item");
 
-  checkboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("click", function () {
-      this.setAttribute("checked", this.checked);
+    // находим id элемента родителя
+    const idParentNode = Number(parentNode.id);
+
+    // находим индекс
+    const index = moviesList.findIndex(function (movie) {
+      if (movie.id === idParentNode) {
+        return true;
+      }
     });
-  });
-});
 
-document.addEventListener("click", function (event) {
-  const target = event.target;
+    moviesList.splice(index, 1);
 
-  if (target.classList.contains("checkbox")) {
-    const checkbox = target.querySelector("input");
+    parentNode.remove();
 
-    if (target.classList.contains("active")) {
-      checkbox.checked = false;
-    } else {
-      checkbox.checked = true;
-    }
-
-    target.classList.toggle("active");
-    event.preventDefault();
+    saveToLocalStorage();
   }
-});
-
-// // Получаем все элементы с классом "movies-item"
-// const movieItems = document.querySelectorAll('.checkbox');
-
-// // Функция для обработки клика 
-// function handleMovieItemClick(event) {
-//   // Проверяем был ли клип что бы не менять чекед checked
-//   if (!event.target.matches('input[type="checkbox"]')) {
-//     // Добавляем класс актив к карточке и дочкам
-//     this.classList.toggle('active');
-//     // Ищем чекбокс внутри карточки и меняем его атрибут checked с false на true
-//     const checkbox = this.querySelector('input[type="checkbox"]');
-//     checkbox.checked = !checkbox.checked;
-//   }
-// }
-// movieItems.forEach(item => {
-//   item.addEventListener('click', handleMovieItemClick);
-// });
-
-
-// function deleteMovie(event) {
-//     const target = event.target;
-
-//     const deleteBtn = target.closest(".btn-delete-item");
-
-//     if (deleteBtn) {
-//       const movieItem = deleteBtn.closest(".movie-item");
-//       const movieId = movieItem.id;
-
-//       // Удалить фильм из списка
-//       removeMovie(movieId);
-//       saveMoviesToStorage();
-//       renderMovies();
-//     }
-// };
-
-// function removeMovie(movieId) {
-//     moviesList = moviesList.filter((movie) => movie.id !== movieId);
-// };
+}
 
 btnAddMovieNode.addEventListener("click", addMovie);
-// moviesListNode.addEventListener("click", deleteMovie, true);
+const btnDeletMovieNode = document.querySelector(".btn-delete-item");
+btnDeletMovieNode.addEventListener("click", deleteMovie);
