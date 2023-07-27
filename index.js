@@ -89,16 +89,13 @@ function init() {
   renderMovies();
 };
 
-// удалить фильм 
+
 function deleteMovie(event) {
-  if (event.target.dataset.action === "delete") {
-    // родительский элемент
+  if (event.target.classList.contains("btn-delete-item")) {
     const parentNode = event.target.closest(".movie-item");
 
-    // находим id элемента родителя
     const idParentNode = Number(parentNode.id);
 
-    // находим индекс
     const index = moviesList.findIndex(function (movie) {
       if (movie.id === idParentNode) {
         return true;
@@ -111,8 +108,9 @@ function deleteMovie(event) {
 
     saveToLocalStorage();
   }
-}
+};
+
+
 
 btnAddMovieNode.addEventListener("click", addMovie);
-const btnDeletMovieNode = document.querySelector(".btn-delete-item");
-btnDeletMovieNode.addEventListener("click", deleteMovie);
+moviesListNode.addEventListener("click", deleteMovie);
