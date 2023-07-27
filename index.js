@@ -26,7 +26,7 @@ function setMovie(filmName, movieId) {
   moviesList.push({
     name: filmName,
     id: movieId,
-    // checked: false,
+    checked: false,
   });
 };
 
@@ -106,11 +106,32 @@ function deleteMovie(event) {
 
     parentNode.remove();
 
-    saveToLocalStorage();
+    saveMoviesToStorage();
   }
 };
+
+function checkedMovie(event) {
+  if (event.target.classList.contains("label")) {
+    const parentNode = event.target.closest(".movie-item");
+
+    const idParentNode = Number(parentNode.id);
+
+    const index = moviesList.findIndex(function (movie) {
+      if (movie.id === idParentNode) {
+        return true;
+      }
+    }); 
+
+    moviesList[index].checked = true;
+
+    saveMoviesToStorage();
+  }
+}
+
+
 
 
 
 btnAddMovieNode.addEventListener("click", addMovie);
 moviesListNode.addEventListener("click", deleteMovie);
+moviesListNode.addEventListener("click", checkedMovie);
