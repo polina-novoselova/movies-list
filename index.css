@@ -37,14 +37,27 @@ body {
   color: #f3f6f9;
 }
 
+@media (max-width: 768px) {
+  .plate_item  {
+    font-size: 10px;
+  }
+}
+
 .app-title {
   margin: 20px 0 0 80px;
+  width: 100%;
   font-size: 120px;
 }
 
 .movies-adder {
   display: flex;
   gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 40px;
+  }
 }
 
 .input-for-moviename {
@@ -166,4 +179,54 @@ body {
 
 .btn-delete-item:hover {
   opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .input-for-moviename {
+    font-size: 15px;
+  }
+
+  .input-for-moviename::placeholder {
+    font-size: 15px;
+  }
+  
+  .btn-movie-adder {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .movie-item {
+    padding: 0 15px;
+    height: 50px;
+  }
+  
+  .label {
+    gap: 10px;
+  }
+  
+  .checkbox {
+    display: none;
+  }
+  
+  .fakecheckbox {
+    min-height: 13px;
+    min-width: 13px;
+  }
+  
+  .fakecheckbox::before {
+    width: 13px;
+    height: 13px;
+  }
+  
+  
+  .movie-name {
+    font-size: 15px;
+  }
+  
+  .btn-delete-item {
+    
+    width: 20px;
+    height: 20px;
+  }   
+  
 }
