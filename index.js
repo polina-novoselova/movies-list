@@ -1,5 +1,3 @@
-"use strict";
-
 const inputMovieAdderNode = document.getElementById("inputMovieAdder");
 const btnAddMovieNode = document.getElementById("btnAddMovie");
 const moviesListNode = document.getElementById("movie-items");
@@ -11,6 +9,12 @@ init();
 function addMovie() {
   const filmName = getMovieNameFromUser();
   const movieId = moviesList.length + 1;
+
+  if (!validate(filmName)) {
+    alert("Пожалуйста, введите корректное название фильма (не более 50 символов).");
+    return;
+  }
+
   setMovie(filmName, movieId);
   saveMoviesToStorage();
   clearInput();
@@ -126,12 +130,33 @@ function checkedMovie(event) {
 
     saveMoviesToStorage();
   }
+};
+
+function validate(filmName) {
+  if (!filmName) {
+    return false;
+  }
+
+  if (filmName.length > 50) {
+    return false;
+  }
+
+  if (!filmName.trim()) {
+    return false;
+  }
+
+  return true;
 }
 
+function handlerKeyDown(event) {
 
-
-
+  if (event.key == "Enter") {
+    
+    addMovie();
+  }
+}
 
 btnAddMovieNode.addEventListener("click", addMovie);
 moviesListNode.addEventListener("click", deleteMovie);
 moviesListNode.addEventListener("click", checkedMovie);
+inputMovieAdderNode.addEventListener("keydown", handlerKeyDown);
