@@ -43,7 +43,7 @@ body {
     display: flex;
   }
 
-  .plate_item  {
+  .plate_item {
     font-size: 10px;
   }
 }
@@ -108,7 +108,6 @@ main {
   display: flex;
   flex-direction: column-reverse;
   margin-top: 20px;
-
 }
 
 .movie-item {
@@ -155,7 +154,7 @@ main {
   transition: all 0.3s ease-in-out;
 }
 
-.fakecheckbox:checked::before, 
+.fakecheckbox:checked::before,
 .checkbox:checked + .fakecheckbox::before {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
@@ -167,7 +166,7 @@ main {
   transition: all 0.3s ease-in-out;
 }
 
-.movie-item:has(.label>.checkbox:checked) {
+.movie-item:has(.label > .checkbox:checked) {
   opacity: 0.5;
   transition: all 0.3s ease-in-out;
 }
@@ -200,43 +199,41 @@ main {
   .input-for-moviename::placeholder {
     font-size: 15px;
   }
-  
+
   .btn-movie-adder {
     height: 40px;
     max-width: 40px;
   }
-  
+
   .movie-item {
     padding: 0 15px;
     height: 50px;
   }
-  
+
   .label {
     gap: 10px;
   }
-  
+
   .checkbox {
     display: none;
   }
-  
+
   .fakecheckbox {
     min-height: 13px;
     min-width: 13px;
   }
-  
+
   .fakecheckbox::before {
     width: 13px;
     height: 13px;
   }
-  
+
   .movie-name {
     font-size: 15px;
   }
-  
+
   .btn-delete-item {
-    
     width: 20px;
     height: 20px;
-  }   
-  
+  }
 }
