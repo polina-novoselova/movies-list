@@ -11,9 +11,27 @@ body {
 
 .background {
   margin-top: 45px;
+  height: 50vh;
   padding: 60px 70px;
   background-color: #232323;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow-y: scroll;
+}
+
+.background::-webkit-scrollbar {
+  width: 10px; 
+  background-color: #545454;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* ползунок скроллбара */
+.background::-webkit-scrollbar-thumb {
+  width: 6px;
+  background-color: #3b364b;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px #5e5677;
 }
 
 @media (max-width: 768px) {
@@ -96,6 +114,7 @@ main {
   background: url(./resources/btn-arrow.png), #6532f8;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .btn-movie-adder:hover {
@@ -125,6 +144,7 @@ main {
   align-items: center;
   flex-grow: 3;
   height: 100%;
+  cursor: pointer;
 }
 
 .checkbox {
@@ -137,6 +157,7 @@ main {
   min-width: 18px;
   border: 1px solid #f3f6f9;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .fakecheckbox::before {
@@ -185,6 +206,7 @@ main {
   background-position: center;
   background-size: contain;
   opacity: 0.3;
+  cursor: pointer;
 }
 
 .btn-delete-item:hover {

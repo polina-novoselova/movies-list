@@ -124,10 +124,14 @@ function checkedMovie(event) {
       if (movie.id === idParentNode) {
         return true;
       }
-    }); 
+    });
 
-    moviesList[index].checked = true;
-
+    if (moviesList[index].checked === true) {
+      moviesList[index].checked = false;
+    } else {
+      moviesList[index].checked = true;
+    }
+    
     saveMoviesToStorage();
   }
 };
