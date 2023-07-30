@@ -38,6 +38,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  .plate-box {
+    margin: 80px 0 0 15px;
+    display: flex;
+  }
+
   .plate_item  {
     font-size: 10px;
   }
@@ -56,8 +61,14 @@ body {
 
 @media (max-width: 768px) {
   .app-title {
-    font-size: 40px;
+    margin: 20px 0 0 15px;
+    font-size: 35px;
   }
+}
+
+main {
+  padding: 0 10px;
+  margin: 0 auto;
 }
 
 .input-for-moviename {
@@ -191,8 +202,8 @@ body {
   }
   
   .btn-movie-adder {
-    width: 40px;
     height: 40px;
+    max-width: 40px;
   }
   
   .movie-item {
@@ -217,7 +228,6 @@ body {
     width: 13px;
     height: 13px;
   }
-  
   
   .movie-name {
     font-size: 15px;
