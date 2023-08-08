@@ -108,6 +108,8 @@ main {
   font-family: Arimo;
   color: #f3f6f9;
   border-bottom: 1px solid #f3f6f9;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
 }
 
 .input-for-moviename::placeholder {
